@@ -176,7 +176,7 @@ nnoremap U viwU
 " capitalize word under cursor
 nnoremap <c-u> viwU
 " replace everything everywhere
-nnoremap <leader>r :%s/
+" nnoremap <leader>r :%s/
 "}}}
 
 "insertion {{{
