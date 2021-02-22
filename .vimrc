@@ -22,8 +22,6 @@ Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'preservim/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'vim-latex/vim-latex'
-Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'flazz/vim-colorschemes'
 
 " All of your Plugins must be added before the following line
@@ -57,7 +55,7 @@ let g:syntastic_python_checkers = ['pyflakes']
 " }}}
 
 """Vimux""" {{{
-nnoremap <F10> :w<cr>:call VimuxRunCommand("python3.8 " . bufname())<CR>
+nnoremap <F10> :w<cr>:call VimuxRunCommand("sudo ~/miniconda3/envs/ml/bin/python3.8 " . bufname("%"))<CR>
 "}}}
 
 " latex-suit {{{
@@ -167,7 +165,7 @@ vnoremap ; :
 nnoremap gr gT
 nnoremap <C-F> :Files ~<CR>
 " custom fzf call
-" nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
+nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
 nnoremap - I<CR><ESC>
 nnoremap = kdd
 nnoremap <cr> i<CR><ESC>
@@ -243,6 +241,7 @@ augroup END
 augroup vimrc     
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+    autocmd BufWinEnter .vimrc setlocal foldmethod=marker
     autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
 augroup END
 " }}}
