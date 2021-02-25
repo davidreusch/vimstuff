@@ -1,7 +1,5 @@
 " Vundle settings {{{
 "
-
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -22,9 +20,9 @@ Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'preservim/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'vim-latex/vim-latex'
-Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'flazz/vim-colorschemes'
+" Plugin 'vim-latex/vim-latex'
+" Plugin 'xuhdev/vim-latex-live-preview'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -57,7 +55,7 @@ let g:syntastic_python_checkers = ['pyflakes']
 " }}}
 
 """Vimux""" {{{
-nnoremap <F10> :w<cr>:call VimuxRunCommand("python3.8 " . bufname())<CR>
+nnoremap <F10> :w<cr>:call VimuxRunCommand("sudo ~/miniconda3/envs/ml/bin/python3.8 " . bufname("%"))<CR>
 "}}}
 
 " latex-suit {{{
@@ -105,8 +103,6 @@ augroup END
 
 " }}} latexsuite end
 
-
-
 """" Powerline  {{{
 "set guifont=Inconsolata\ for\ Powerline:h15
 "let g:Powerline_symbols = 'fancy'
@@ -116,8 +112,6 @@ augroup END
 "set term=xterm-256color
 "set termencoding=utf-8
 " }}}
-
-
 
 " Indentation {{{
 set tabstop=4
@@ -141,7 +135,6 @@ set ttyfast
 " set mouse=a
 set splitright
 " }}}
-
 
 """"" MAPPINGS """"" {{{
 
@@ -168,10 +161,10 @@ nnoremap gr gT
 nnoremap <C-F> :Files ~<CR>
 " custom fzf call
 " nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
-nnoremap - I<CR><ESC>
-nnoremap = kdd
+nnoremap - dd
+nnoremap = o<esc>
 nnoremap <cr> i<CR><ESC>
-nnoremap <backspace> a<backspace><esc>
+" nnoremap <backspace> a<backspace><esc>
 nnoremap U viwU
 " capitalize word under cursor
 nnoremap <c-u> viwU
@@ -208,14 +201,12 @@ if !exists('$TMUX')
     nnoremap <C-H> <C-W><C-H>
 endif
 nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr>
-autocmd VimEnter * nnoremap <c-j> :TmuxNavigateDown<cr>
+autocmd VimEnter * nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr>
 " }}}
 
 " visual {{{
 " swap in visual model 
 vnoremap <C-X> <Esc>`.``gvP``P
-" vnoremap jk <esc>
-" vnoremap kj <esc>
 vnoremap L $
 "}}}
 
@@ -224,6 +215,8 @@ cnoremap w<cr> <nop>
 cnoremap wq<cr> <nop>
 cnoremap jk <esc>
 cnoremap kj <esc>
+" }}}
+
 " }}}
 
 " Python autocommands -------- {{{
@@ -243,6 +236,7 @@ augroup END
 augroup vimrc     
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+    autocmd BufWinEnter .vimrc setlocal foldmethod=marker
     autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
 augroup END
 " }}}
@@ -261,7 +255,6 @@ augroup END
 " * / # - go to next/prev occurence of word under cursor
 " c-o c-o : go back to prev location
 " }}}
-
 
 " Colors {{{
 " colors zenburn
@@ -282,15 +275,15 @@ set makeprg=python3.8
 "}}}
 
 " functions {{{
-function Wuf()
-    echo "Wuf Wuf Wuf!"
-endfunction
+" function Wuf()
+    " echo "Wuf Wuf Wuf!"
+" endfunction
 
 
-function Varargs(...)
-    echom a:0
+" function Varargs(...)
+    " echom a:0
 
-    echom a:2
-    echom a:000
-endfunction
+    " echom a:2
+    " echom a:000
+" endfunction
 "}}}
