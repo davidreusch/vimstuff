@@ -21,8 +21,8 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'preservim/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'flazz/vim-colorschemes'
-" Plugin 'vim-latex/vim-latex'
-" Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'vim-latex/vim-latex'
+Plugin 'xuhdev/vim-latex-live-preview'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -84,53 +84,54 @@ set iskeyword+=:
 " normal TTarget pdf
 let g:Tex_DefaultTargetFormat="pdf"
 let g:Tex_ViewRuleComplete_pdf="okular %:r.pdf"
-let g:livepreview_cursorhold_recompile = 0
-
+let g:livepreview_cursorhold_recompile = 0 
+" }}} latexsuite end
 
 "Tex Autocommands --- {{{
-augroup tex
-    autocmd!
+augroup tex autocmd!
     " autocmd BufWinEnter *.tex let g:livepreview_cursorhold_recompile = 0
-    autocmd BufWinEnter *.tex :cd %:p:h
-    autocmd BufWinEnter *.tex nnoremap <leader>w :nohlsearch<Bar>echo<Bar>:w<cr>
-    autocmd BufWinEnter *.tex nnoremap <leader>c I% <esc>
-    autocmd BufWinEnter *.tex nnoremap <leader>pre :let g:Tex_DefaultTargetFormat="pdf"<cr> :LLPStartPreview<cr>
-    autocmd BufWinEnter *.tex nnoremap <leader>er :let g:Tex_DefaultTargetFormat="dvi"<cr>
+    autocmd BufWinEnter *.tex :cd %:p:h 
+    autocmd BufWinEnter *.tex nnoremap <leader>w :nohlsearch<Bar>echo<Bar>:w<cr> 
+    autocmd BufWinEnter *.tex nnoremap <leader>c I% <esc> 
+    autocmd BufWinEnter *.tex nnoremap <leader>p :let g:Tex_DefaultTargetFormat="pdf"<cr>:LLPStartPreview<cr>
+    autocmd BufWinEnter *.tex nnoremap <leader>er :let g:Tex_DefaultTargetFormat="dvi"<cr> 
+    autocmd BufWinEnter *.tex nnoremap <leader>? a[??] <esc>
+    autocmd BufWinEnter *.tex inoremap <leader>? [??] 
+    autocmd BufWinEnter *.tex set textwidth=90
+    autocmd Filetype tex set textwidth=90 
+    autocmd Filetype tex let NERDTreeIgnore=['\(.tex\|.pdf\)\@<!$[[file]]']
+    autocmd BufWinEnter *.tex let NERDTreeIgnore=['\(.tex\|.pdf\)\@<!$[[file]]']
+    autocmd Filetype tex nnoremap <leader>= gqip<c-o><c-o>
+    autocmd BufWinEnter *.tex nnoremap <leader>= gqip<c-o><c-o>
+    autocmd BufWinEnter *.tex vnoremap = gq
+    autocmd Filetype tex vnoremap = gq
+
 augroup END
 
 " }}}
 
-
-" }}} latexsuite end
-
 """" Powerline  {{{
-"set guifont=Inconsolata\ for\ Powerline:h15
-"let g:Powerline_symbols = 'fancy'
-"set encoding=utf-8
-"set t_Co=256
-"set fillchars+=stl:\ ,stlnc:\
-"set term=xterm-256color
-"set termencoding=utf-8
-" }}}
+"set guifont=Inconsolata\ for\ Powerline:h15 let g:Powerline_symbols = 'fancy' set encoding=utf-8
+"set t_Co=256 set fillchars+=stl:\ ,stlnc:\ set term=xterm-256color set termencoding=utf-8 }}}
 
 " Indentation {{{
-set tabstop=4
-set softtabstop=4
+set tabstop=4 
+set softtabstop=4 
 set shiftwidth=4
-set textwidth=200
-set expandtab
-set autoindent
+" set textwidth=100
+set expandtab 
+set autoindent 
 set fileformat=unix
 " }}}
 
 " other options {{{
-set nu
-set relativenumber
-set showmatch
-set showcmd
-set hlsearch
-set incsearch
-set scrolloff=10
+set nu 
+set relativenumber 
+set showmatch 
+set showcmd 
+set hlsearch 
+set incsearch 
+set scrolloff=10 
 set ttyfast
 " set mouse=a
 set splitright
@@ -139,30 +140,30 @@ set splitright
 """"" MAPPINGS """"" {{{
 
 "normal mode {{{
-let mapleader=","
-nnoremap <leader>w :nohlsearch<Bar>echo<cr>:w<cr>
-nnoremap <leader>= gg=G<c-o><c-o>
-nnoremap <leader>q :wq<cr>
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :w<Bar>source $MYVIMRC<CR>
-nnoremap <leader>ez :vsplit ~/.zshrc<cr>
-nnoremap <leader>sz :!source ~/.zshrc<cr>
-nnoremap <leader>nm :set mouse=""<cr>
+let mapleader="," 
+nnoremap <leader>w :nohlsearch<Bar>echo<cr>:w<cr> 
+nnoremap <leader>= gg=G<c-o><c-o> 
+nnoremap <leader>q :q<cr> 
+nnoremap <leader>ev :vsplit $MYVIMRC<cr> 
+nnoremap <leader>sv :w<Bar>source $MYVIMRC<CR> 
+nnoremap <leader>ez :vsplit ~/.zshrc<cr> 
+nnoremap <leader>sz :!source ~/.zshrc<cr> 
+nnoremap <leader>nm :set mouse=""<cr> 
 nnoremap <leader>m :set mouse=a<cr>
 nnoremap <leader>t :tabn 
-nnoremap ZZ ZZ:source $MYVIMRC<cr>
+nnoremap ZZ ZZ:source $MYVIMRC<cr> 
 nnoremap <leader>2 bi"<esc>lea"<esc>l
-nnoremap <leader>ta :tabnew<space>
-nnoremap  <F2> :tabnew<space>
-nnoremap cl c$
-nnoremap ; :
-vnoremap ; :
-nnoremap gr gT
+nnoremap <leader>ta :tabnew<space> 
+nnoremap  <F2> :tabnew<space> 
+nnoremap cl c$ 
+nnoremap dl d$
+nnoremap ; : 
+vnoremap ; : 
+nnoremap gr gT 
 nnoremap <C-F> :Files ~<CR>
-" custom fzf call
-" nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
-nnoremap - dd
-nnoremap = o<esc>
+" custom fzf call nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER
+" /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
+nnoremap - dd nnoremap = o<esc> 
 nnoremap <cr> i<CR><ESC>
 " nnoremap <backspace> a<backspace><esc>
 nnoremap U viwU
@@ -172,48 +173,48 @@ nnoremap <c-u> viwU
 nnoremap <leader>r :%s/
 "}}}
 
-"insertion {{{
-"capitalize word that is being written
+"insertion {{{ capitalize word that is being written
 inoremap <c-u> <esc>viwUea 
-inoremap jk <esc>
-inoremap kj <esc>
-inoremap <esc> <nop>
+inoremap jk <esc> 
+inoremap kj <esc> 
+inoremap <esc> <nop> 
 inoremap <leader>w <esc>:nohlsearch<Bar>echo<cr>:w<cr>
 " inoremap <F5> <Plug>TexFastEnvironmentInsert
 imap [15~ <F5>
 
+
 "}}}
 
-"movement {{{
-onoremap p i(
-onoremap L $
-onoremap H 0
+"movement {{{ TODO: map this also for other types of brackets
+onoremap p i( 
+onoremap L $ 
+onoremap H 0 
 onoremap ih :<c-u>execute "normal! ?def\r:nohlsearch\rV"<cr>
-onoremap pr :<c-u>execute "normal! ?print\r:nohlsearch\rV"<cr>
+onoremap pr :<c-u>execute "normal! ?print\r:nohlsearch\rV"<cr> 
 onoremap fu :<c-u>execute "normal! ?def\r:nohlsearch\rV/def\rk"<cr>
 " }}}
 
 " navigation {{{
-if !exists('$TMUX')
-    nnoremap <C-J> <C-W><C-J>
-    nnoremap <C-K> <C-W><C-K>
-    nnoremap <C-L> <C-W><C-L>
-    nnoremap <C-H> <C-W><C-H>
-endif
-nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr>
+if !exists('$TMUX') 
+  if !(&filetype==#"tex") 
+    nnoremap <buffer> <C-J> <C-W><C-J> 
+  endif 
+endif 
+nnoremap <C-K> <C-W><C-K> 
+nnoremap <C-L> <C-W><C-L> 
+nnoremap <C-H> <C-W><C-H> 
+nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr> 
 autocmd VimEnter * nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr>
 " }}}
 
-" visual {{{
-" swap in visual model 
-vnoremap <C-X> <Esc>`.``gvP``P
-vnoremap L $
+" visual {{{ swap in visual model 
+vnoremap <C-X> <Esc>`.``gvP``P vnoremap L $
 "}}}
 
 "command line {{{
-cnoremap w<cr> <nop>
-cnoremap wq<cr> <nop>
-cnoremap jk <esc>
+cnoremap w<cr> <nop> 
+cnoremap wq<cr> <nop> 
+cnoremap jk <esc> 
 cnoremap kj <esc>
 " }}}
 
@@ -238,6 +239,7 @@ augroup vimrc
     autocmd FileType vim setlocal foldmethod=marker
     autocmd BufWinEnter .vimrc setlocal foldmethod=marker
     autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
+    autocmd FileType vim nnoremap <leader>p oechom ''<esc>i 
 augroup END
 " }}}
 
@@ -260,7 +262,7 @@ augroup END
 " colors zenburn
 " let g:zenburn_high_Contrast=1
 " let g:zenburn_alternate_Visual = 1
-let python_highlight_all=1
+" let python_highlight_all=1
 syntax on 
 colors zenburn
 colors gruvbox
