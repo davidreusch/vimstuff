@@ -145,6 +145,7 @@ nnoremap <leader>w :nohlsearch<Bar>echo<cr>:w<cr>
 nnoremap <leader>= gg=G<c-o><c-o> 
 nnoremap <leader>q :q<cr> 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> 
+nnoremap <leader>ex osys.exit(0)<esc>
 nnoremap <leader>sv :w<Bar>source $MYVIMRC<CR> 
 nnoremap <leader>ez :vsplit ~/.zshrc<cr> 
 nnoremap <leader>sz :!source ~/.zshrc<cr> 
@@ -207,7 +208,8 @@ nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr>
 autocmd VimEnter * nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr>
 " }}}
 
-" visual {{{ swap in visual model 
+" visual {{{ 
+" swap in visual model 
 vnoremap <C-X> <Esc>`.``gvP``P vnoremap L $
 "}}}
 
