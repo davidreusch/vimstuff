@@ -91,20 +91,20 @@ let g:livepreview_cursorhold_recompile = 0
 augroup tex autocmd!
     " autocmd BufWinEnter *.tex let g:livepreview_cursorhold_recompile = 0
     autocmd BufWinEnter *.tex :cd %:p:h 
-    autocmd BufWinEnter *.tex nnoremap <leader>w :nohlsearch<Bar>echo<Bar>:w<cr> 
-    autocmd BufWinEnter *.tex nnoremap <leader>c I% <esc> 
-    autocmd BufWinEnter *.tex nnoremap <leader>p :let g:Tex_DefaultTargetFormat="pdf"<cr>:LLPStartPreview<cr>
-    autocmd BufWinEnter *.tex nnoremap <leader>er :let g:Tex_DefaultTargetFormat="dvi"<cr> 
-    autocmd BufWinEnter *.tex nnoremap <leader>? a[??] <esc>
-    autocmd BufWinEnter *.tex inoremap <leader>? [??] 
+    autocmd BufWinEnter *.tex nnoremap <buffer> <leader>w :nohlsearch<Bar>echo<Bar>:wall<cr>
+    autocmd BufWinEnter *.tex nnoremap <buffer> <leader>c I% <esc> 
+    autocmd BufWinEnter *.tex nnoremap <buffer> <leader>p :let g:Tex_DefaultTargetFormat="pdf"<cr>:LLPStartPreview<cr>
+    autocmd BufWinEnter *.tex nnoremap <buffer> <leader>er :let g:Tex_DefaultTargetFormat="dvi"<cr> 
+    autocmd BufWinEnter *.tex nnoremap <buffer> <leader>? a[??] <esc>
+    autocmd BufWinEnter *.tex inoremap <buffer> <leader>? [??] 
     autocmd BufWinEnter *.tex set textwidth=90
     autocmd Filetype tex set textwidth=90 
     autocmd Filetype tex let NERDTreeIgnore=['\(.tex\|.pdf\)\@<!$[[file]]']
     autocmd BufWinEnter *.tex let NERDTreeIgnore=['\(.tex\|.pdf\)\@<!$[[file]]']
-    autocmd Filetype tex nnoremap <leader>= gqip<c-o><c-o>
-    autocmd BufWinEnter *.tex nnoremap <leader>= gqip<c-o><c-o>
-    autocmd BufWinEnter *.tex vnoremap = gq
-    autocmd Filetype tex vnoremap = gq
+    autocmd Filetype tex nnoremap <buffer> <leader>= V}gq<c-o>
+    autocmd BufWinEnter *.tex nnoremap <buffer> <leader>= V}gq<c-o>
+    autocmd BufWinEnter *.tex vnoremap <buffer> = gq
+    autocmd Filetype tex vnoremap <buffer> = gq
 
 augroup END
 
@@ -140,31 +140,32 @@ set splitright
 """"" MAPPINGS """"" {{{
 
 "normal mode {{{
-let mapleader="," 
-nnoremap <leader>w :nohlsearch<Bar>echo<cr>:w<cr> 
-nnoremap <leader>= gg=G<c-o><c-o> 
-nnoremap <leader>q :q<cr> 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr> 
+let mapleader=","
+nnoremap <leader>w :nohlsearch<Bar>echo<cr>:wall<cr>
+" nnoremap <leader>= gg=G<c-o><c-o>
+nnoremap <leader>q :q<cr>
 nnoremap <leader>ex osys.exit(0)<esc>
-nnoremap <leader>sv :w<Bar>source $MYVIMRC<CR> 
-nnoremap <leader>ez :vsplit ~/.zshrc<cr> 
-nnoremap <leader>sz :!source ~/.zshrc<cr> 
-nnoremap <leader>nm :set mouse=""<cr> 
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :w<Bar>source $MYVIMRC<CR>
+nnoremap <leader>ez :vsplit ~/.zshrc<cr>
+nnoremap <leader>sz :!source ~/.zshrc<cr>
+nnoremap <leader>nm :set mouse=""<cr>
 nnoremap <leader>m :set mouse=a<cr>
-nnoremap <leader>t :tabn 
-nnoremap ZZ ZZ:source $MYVIMRC<cr> 
+nnoremap <leader>t :tabn
+nnoremap ZZ ZZ:source $MYVIMRC<cr>
 nnoremap <leader>2 bi"<esc>lea"<esc>l
-nnoremap <leader>ta :tabnew<space> 
-nnoremap  <F2> :tabnew<space> 
-nnoremap cl c$ 
+nnoremap <leader>ta :tabnew<space>
+nnoremap  <F2> :tabnew<space>
+nnoremap cl c$
 nnoremap dl d$
-nnoremap ; : 
-vnoremap ; : 
-nnoremap gr gT 
+nnoremap ; :
+vnoremap ; :
+nnoremap gr gT
 nnoremap <C-F> :Files ~<CR>
 " custom fzf call nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER
 " /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
-nnoremap - dd nnoremap = o<esc> 
+nnoremap - dd
+nnoremap = o<esc>
 nnoremap <cr> i<CR><ESC>
 " nnoremap <backspace> a<backspace><esc>
 nnoremap U viwU
@@ -174,11 +175,12 @@ nnoremap <c-u> viwU
 nnoremap <leader>r :%s/
 "}}}
 
-"insertion {{{ capitalize word that is being written
-inoremap <c-u> <esc>viwUea 
-inoremap jk <esc> 
-inoremap kj <esc> 
-inoremap <esc> <nop> 
+"insertion {{{ 
+"capitalize word that is being written
+inoremap <c-u> <esc>viwUea
+inoremap jk <esc>
+inoremap kj <esc>
+inoremap <esc> <nop>
 inoremap <leader>w <esc>:nohlsearch<Bar>echo<cr>:w<cr>
 " inoremap <F5> <Plug>TexFastEnvironmentInsert
 imap [15~ <F5>
@@ -241,7 +243,7 @@ augroup vimrc
     autocmd FileType vim setlocal foldmethod=marker
     autocmd BufWinEnter .vimrc setlocal foldmethod=marker
     autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
-    autocmd FileType vim nnoremap <leader>p oechom ''<esc>i 
+    autocmd FileType vim nnoremap <buffer> <leader>p oechom ''<esc>i 
 augroup END
 " }}}
 
