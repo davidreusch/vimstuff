@@ -150,6 +150,8 @@ nnoremap <leader>sv :w<Bar>source $MYVIMRC<CR>
 nnoremap <leader>ez :vsplit ~/.zshrc<cr>
 nnoremap <leader>sz :!source ~/.zshrc<cr>
 nnoremap <leader>nm :set mouse=""<cr>
+nnoremap <leader>no :set nu<cr> :set relativenumber<cr>
+nnoremap <leader>nn :set norelativenumber<cr> :set nonu<cr>
 nnoremap <leader>m :set mouse=a<cr>
 nnoremap <leader>t :tabn
 nnoremap ZZ ZZ:source $MYVIMRC<cr>
