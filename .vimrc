@@ -37,10 +37,12 @@ filetype plugin indent on    " required
 
 set secure
 set shell=/usr/bin/zsh
+set noswapfile
 
 """""Tagbar Plugin""""" {{{
 " toggle folds
 nnoremap <space> za
+noremap <2-LeftMouse> za
 nnoremap <F8> :TagbarToggle<CR>
 inoremap <F8> :TagbarToggle<CR>
 " }}}
@@ -144,7 +146,7 @@ let mapleader=","
 nnoremap <leader>w :nohlsearch<Bar>echo<cr>:wall<cr>
 " nnoremap <leader>= gg=G<c-o><c-o>
 nnoremap <leader>q :q<cr>
-nnoremap <leader>ex :qall<cr>
+nnoremap <leader>ex osys.exit(0)<esc>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :w<Bar>source $MYVIMRC<CR>
 nnoremap <leader>ez :vsplit ~/.zshrc<cr>
@@ -156,6 +158,7 @@ nnoremap <leader>m :set mouse=a<cr>
 nnoremap <leader>t :tabn
 nnoremap ZZ ZZ:source $MYVIMRC<cr>
 nnoremap <leader>2 bi"<esc>lea"<esc>l
+nnoremap <leader>" bi["<esc>lea"]<esc>l
 nnoremap <leader>ta :tabnew<space>
 nnoremap  <F2> :tabnew<space>
 nnoremap cl c$
@@ -163,11 +166,10 @@ nnoremap dl d$
 nnoremap ; :
 vnoremap ; :
 nnoremap gr gT
-" nnoremap <C-F> :Files ~<CR>
-" custom fzf call 
-nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
-
-nnoremap - dd
+nnoremap <C-F> :Files ~<CR>
+" custom fzf call nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER
+" /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
+nnoremap - ddk
 nnoremap = o<esc>
 nnoremap <cr> i<CR><ESC>
 " nnoremap <backspace> a<backspace><esc>
@@ -176,6 +178,8 @@ nnoremap U viwU
 nnoremap <c-u> viwU
 " replace everything everywhere
 nnoremap <leader>r :%s/
+nnoremap <leader>f :.,+
+" TODO replace in n next lines
 "}}}
 
 "insertion {{{ 
@@ -191,7 +195,9 @@ imap [15~ <F5>
 
 "}}}
 "movement {{{ TODO: map this also for other types of brackets
-onoremap p i(
+" onoremap p i(
+onoremap p :<c-u>execute "normal! /,\r:nohlsearch\r"<cr>
+onoremap P ])
 onoremap L $
 onoremap H 0
 onoremap ih :<c-u>execute "normal! ?def\r:nohlsearch\rV"<cr>
@@ -212,13 +218,15 @@ nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr>
 autocmd VimEnter * nnoremap <c-j> :TmuxNavigateDown<cr>:echo<cr>
 " }}}
 
-" visual {{{ swap in visual model 
+" visual {{{ 
+" swap in visual model 
 vnoremap <C-X> <Esc>`.``gvP``P vnoremap L $
+vnoremap <leader>c I# <esc>
 "}}}
 
 "command line {{{
-cnoremap w<cr> <nop> 
-cnoremap wq<cr> <nop> 
+" cnoremap w<cr> <nop> 
+" cnoremap wq<cr> <nop> 
 cnoremap jk <esc> 
 cnoremap kj <esc>
 " }}}
@@ -260,6 +268,7 @@ augroup END
 " zR - open all folds
 " { / } - go to beginning/end of current paragraph
 " * / # - go to next/prev occurence of word under cursor
+" n / N - go to next/prev occurence of word under cursor -> better!
 " c-o c-o : go back to prev location
 " }}}
 
