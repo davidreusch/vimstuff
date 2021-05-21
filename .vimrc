@@ -163,9 +163,10 @@ nnoremap dl d$
 nnoremap ; :
 vnoremap ; :
 nnoremap gr gT
-nnoremap <C-F> :Files ~<CR>
-" custom fzf call nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER
-" /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
+" nnoremap <C-F> :Files ~<CR>
+" custom fzf call 
+nnoremap <C-F> :call fzf#run({'source': 'rg --files /home/FE/reuschenberg/SAUBER /data/SAUBER_data/datasets/lanuv', 'sink': 'tabnew', 'down': '40%'})<cr>
+
 nnoremap - dd
 nnoremap = o<esc>
 nnoremap <cr> i<CR><ESC>
@@ -189,13 +190,12 @@ imap [15~ <F5>
 
 
 "}}}
-
 "movement {{{ TODO: map this also for other types of brackets
-onoremap p i( 
-onoremap L $ 
-onoremap H 0 
+onoremap p i(
+onoremap L $
+onoremap H 0
 onoremap ih :<c-u>execute "normal! ?def\r:nohlsearch\rV"<cr>
-onoremap pr :<c-u>execute "normal! ?print\r:nohlsearch\rV"<cr> 
+onoremap pr :<c-u>execute "normal! ?print\r:nohlsearch\rV"<cr>
 onoremap fu :<c-u>execute "normal! ?def\r:nohlsearch\rV/def\rk"<cr>
 " }}}
 
